@@ -6,5 +6,26 @@
 // But instead we're going to implement it from scratch:
 var getElementsByClassName = function(className
 ) {
-  // your code here
+
+  // flatten the dom
+
+  // get the elements
+  var allDomElems = document.querySelectorAll('body');
+  let elem = allDomElems[0];
+
+
+  // get children
+  let children = elem.childNodes;
+
+  if (children.childNodes === []) {
+    return;
+  }
+
+  // iterate through the elements
+  var resultArray = [];
+  for (let i = 0; i < children.length; i++) {
+    console.log(children[i]);
+    // getElementsByClassName();  
+    // get the name
+  }
 };
