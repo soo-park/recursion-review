@@ -8,6 +8,9 @@ var stringifyJSON = function(obj) {
   var result = '';
 
   // base case for undefined
+  if (obj === undefined) {
+    result += 'undefined';   
+  }
 
   // base case for string
   if (typeof obj === 'string') {
