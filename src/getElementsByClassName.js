@@ -4,28 +4,26 @@
 // };
 
 // But instead we're going to implement it from scratch:
-var getElementsByClassName = function(className
-) {
+var getElementsByClassName = function(className) {
 
-  // flatten the dom
+  var result = [];
 
   // get the elements
-  var allDomElems = document.querySelectorAll('body');
-  let elem = allDomElems[0];
+  var root = document.body;
 
-
-  // get children
-  let children = elem.childNodes;
-
-  if (children.childNodes === []) {
-    return;
+  const traverseTree = function(node){
+    if (node.childNodes.length>=0){
+      let children = node.childNodes;
+      for (let i = 0; i<children.length; i++){
+        if (children[i].className === className) {
+          result.push(children[i]);
+        }
+      }
+    }
   }
 
-  // iterate through the elements
-  var resultArray = [];
-  for (let i = 0; i < children.length; i++) {
-    console.log(children[i]);
-    // getElementsByClassName();  
-    // get the name
-  }
+  traverseTree(root);
+
+  return result;
+
 };
