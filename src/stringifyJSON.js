@@ -7,9 +7,11 @@ var stringifyJSON = function(obj) {
   // collecting the result here
   var result = '';
 
+  // base case for undefined
+
   // base case for string
   if (typeof obj === 'string') {
-    result += '"' + obj + +'"';
+    result += '"' + obj + '"';
   }  
 
   // base case for numbers
@@ -27,18 +29,16 @@ var stringifyJSON = function(obj) {
     result += 'false';
   }
 
-  // base case for null
-  if (typeof obj === null) {
-    result += 'null';
-  }
-
   if (typeof obj === 'object') {
+    
+    // checking array case
     if (Array.isArray(obj)) {
+      console.log('yay', obj, result);
       for (let i = 0; i < obj.length; i++) {
-        result += '[';
-        result += stringifyJSON(obj[i]) + ', ';
-        result += ']';
+        result += '[' + stringifyJSON(obj[i]) + ', ' + ']';
       }
+    } else if (obj === null) {
+      result += 'null';
     } else {
       // object literal goes here
       for (let key in obj) {
@@ -49,16 +49,18 @@ var stringifyJSON = function(obj) {
     }
   }
 
-  let prev = result[0];
-  var result1 = '';
-  for (let j = 1; j < result.length; j++) {
-    if (prev === ',' && (result[i] === ']' || result[i] === '}')) {
-      prev = result[i];
-    } else {
-      result += prev;
-      prev = result[i];
-    }
-  }
-
   return result;
+
+  // let prev = result[0];
+  // var result1 = '';
+  // for (let j = 1; j < result.length; j++) {
+  //   if (prev === ',' && (result[i] === ']' || result[i] === '}')) {
+  //     prev = result[i];
+  //   } else {
+  //     result1 += prev;
+  //     prev = result[i];
+  //   }
+  // }
+
+  // return result1;
 };
