@@ -5,25 +5,30 @@
 
 // But instead we're going to implement it from scratch:
 var getElementsByClassName = function(className) {
-
   var result = [];
-
+  // debugger;`
   // get the elements
   var root = document.body;
-
+  
   const traverseTree = function(node){
-    if (node.childNodes.length>=0){
+    
+    if (node.className === className) {
+      result.push(node);
+    }
+
+
+    if (node.childNodes.length >= 0) {
       let children = node.childNodes;
       for (let i = 0; i<children.length; i++){
-        if (children[i].className === className) {
-          result.push(children[i]);
-        }
+        traverseTree(children[i]);
       }
     }
   }
 
   traverseTree(root);
 
+  // the code is returning array vs the expected result is HTMLcollection
+  console.log(document.getElementsByClassName(className));
+  console.log(result);
   return result;
-
 };
