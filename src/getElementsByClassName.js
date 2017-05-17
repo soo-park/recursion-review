@@ -12,10 +12,15 @@ var getElementsByClassName = function(className) {
   
   const traverseTree = function(node){
     
-    if (node.className === className) {
-      result.push(node);
-    }
+    let classNames = node.classList;
 
+    if (classNames !== undefined) {
+      for (let j = 0; j < classNames.length; j++) {
+        if (classNames[j] === className) {
+          result.push(node);
+        }      
+      }
+    }
 
     if (node.childNodes.length >= 0) {
       let children = node.childNodes;
